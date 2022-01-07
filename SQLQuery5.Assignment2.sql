@@ -71,6 +71,23 @@ update LoaiSP
      set Gia=100
 	 where (Gia>0)
 
+--index and view
+create index Ten_H on Hang(TenH);
+go
+create index Mo_Ta on LoaiSP(MoTa);
+go
+--View_SanPham: với các cột Mã sản phẩm, Tên sản phẩm, Giá bán
+create view View_SanPham AS
+select MaSP,TenLoaiSP,Gia
+from LoaiSP
+select*from View_SanPham
+--View_SanPham_Hang: với các cột Mã SP, Tên sản phẩm, Hãng sản xuất
+create view View_SanPham_Hang AS
+select sp.MaSP,sp.TenSP,hang.TenH
+from Hang
+join SP
+on sp.MaH=Hang.MaH
+select*from View_SanPham_Hang
 
 
 
