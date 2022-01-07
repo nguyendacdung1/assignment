@@ -66,5 +66,19 @@ Select*from customer
 alter table Subscribers
 alter column registrationdate date not null;
 --Viết câu lệnh để thay đổi số điện thoại phải bắt đầu 09
+select*from
 
+create index Cus_Name on Customer(CusName); 
 
+--View_KhachHang: Hiển thị các thông tin Mã khách hàng, Tên khách hàng, địa chỉ
+create view View_KhachHang AS
+select CusID,CusName,Address
+from customer
+select*from View_KhachHang
+--View_KhachHang_ThueBao: Hiển thị thông tin Mã khách hàng, Tên khách hàng, Số thuê bao
+create view View_KhachHang_ThueBao AS
+select customer.CusID,customer.CusName,Subscribers.SubNumber
+from customer
+join Subscribers
+on customer.CusID=Subscribers.CusID
+select*from View_KhachHang_ThueBao
